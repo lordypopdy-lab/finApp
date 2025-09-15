@@ -1008,13 +1008,13 @@ const Dashboard = () => {
             <strong>Overview</strong>
           </div>
         </a>
-        <a href="app-pages.html" className="item">
+        <a href="#" onClick={frozenAccountToast} className="item">
           <div className="col">
             <ion-icon name="document-text-outline"></ion-icon>
             <strong>Pages</strong>
           </div>
         </a>
-        <a href="" className="item">
+        <a href="#" onClick={frozenAccountToast} className="item">
           <div className="col">
             <ion-icon name="apps-outline"></ion-icon>
             <strong>Components</strong>
@@ -1120,7 +1120,7 @@ const Dashboard = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="app-pages.html" className="item">
+                  <a href="#" onClick={frozenAccountToast} className="item">
                     <div className="icon-box bg-primary">
                       <ion-icon name="document-text-outline"></ion-icon>
                     </div>
@@ -1128,7 +1128,7 @@ const Dashboard = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="" className="item">
+                  <a href="#" onClick={frozenAccountToast} className="item">
                     <div className="icon-box bg-primary">
                       <ion-icon name="apps-outline"></ion-icon>
                     </div>
@@ -1136,7 +1136,7 @@ const Dashboard = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="item">
+                  <a href="#" onClick={frozenAccountToast} className="item">
                     <div className="icon-box bg-primary">
                       <ion-icon name="card-outline"></ion-icon>
                     </div>
