@@ -6,7 +6,14 @@ import { useEffect } from "react";
 const Dashboard = () => {
   const [user, setUser] = useState(null);
 
+  // Load preference from localStorage (default = true = show balance)
+  const [showBalance, setShowBalance] = useState(() => {
+    const saved = localStorage.getItem("showBalance");
+    return saved ? JSON.parse(saved) : true;
+  });
+
   useEffect(() => {
+    localStorage.setItem("showBalance", JSON.stringify(showBalance));
     const userData = localStorage.getItem("user");
 
     if (!userData) {
@@ -30,17 +37,27 @@ const Dashboard = () => {
     };
 
     getUser();
-  }, []);
+  }, [showBalance]);
 
   const logout = async () => {
     localStorage.removeItem("user");
     window.location.href = "/login";
   };
 
+  const withdrawalAlert = async () => {
+    toast.error("Next free withdrawal will be on 23rd Dec. 2025.", {
+      icon: "🔒",
+    });
+  };
+
   const frozenAccountToast = () => {
     toast.error("Your account is frozen. Please contact support.", {
       icon: "🔒",
     });
+  };
+
+  const toggleBalance = () => {
+    setShowBalance((prev) => !prev);
   };
 
   return (
@@ -74,7 +91,7 @@ const Dashboard = () => {
           </a>
         </div>
       </div>
-      
+
       <div id="appCapsule">
         <div className="section wallet-card-section pt-1">
           <div className="wallet-card">
@@ -82,20 +99,19 @@ const Dashboard = () => {
               <div className="left">
                 <span className="title">Total Balance</span>
                 <h1 className="total">
-                  {new Intl.NumberFormat("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  }).format(user?.balance ?? 0)}
+                  {showBalance
+                    ? new Intl.NumberFormat("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      }).format(user?.balance ?? 0)
+                    : "****"}
                 </h1>
               </div>
               <div className="right">
-                <a
-                  href="#"
-                  className="button"
-                  data-bs-toggle="modal"
-                  data-bs-target="#depositActionSheet"
-                >
-                  <ion-icon name="add-outline"></ion-icon>
+                <a href="#" className="button" onClick={toggleBalance}>
+                  <ion-icon
+                    name={showBalance ? "eye-off-outline" : "eye-outline"}
+                  ></ion-icon>
                 </a>
               </div>
             </div>
@@ -264,7 +280,7 @@ const Dashboard = () => {
 
                     <div className="form-group basic">
                       <button
-                      onClick={frozenAccountToast}
+                        onClick={withdrawalAlert}
                         type="button"
                         className="btn btn-primary btn-block btn-lg"
                         data-bs-dismiss="modal"
@@ -338,7 +354,7 @@ const Dashboard = () => {
                     <div className="form-group basic">
                       <button
                         type="button"
-                        onClick={frozenAccountToast}
+                        onClick={withdrawalAlert}
                         className="btn btn-primary btn-block btn-lg"
                         data-bs-dismiss="modal"
                       >
@@ -416,7 +432,7 @@ const Dashboard = () => {
 
                     <div className="form-group basic">
                       <button
-                      onClick={frozenAccountToast}
+                        onClick={frozenAccountToast}
                         type="button"
                         className="btn btn-primary btn-block btn-lg"
                         data-bs-dismiss="modal"
