@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-const allowedOrigins = ["http://localhost:5173", "https://finApp.vercel.app"];
+const allowedOrigins = ["http://localhost:5173", "https://finn-app-one.vercel.app"];
 
 const corsOptions = {
   origin: function (origin, callback) {

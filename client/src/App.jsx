@@ -8,8 +8,9 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 
 const App = () => {
-  axios.defaults.baseURL = "http://localhost:3000";
+  axios.defaults.baseURL = "https://fin-app-sooty.vercel.app";
   axios.defaults.withCredentials = true;
+  //http://localhost:3000
 
   return (
     <BrowserRouter>
