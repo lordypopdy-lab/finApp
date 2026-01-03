@@ -45,7 +45,7 @@ const Dashboard = () => {
   };
 
   const withdrawalAlert = async () => {
-    toast.error("Next free withdrawal will be on 23rd Dec. 2025.", {
+    toast.error("Next free withdrawal will be on . 2025.", {
       icon: "🔒",
     });
   };
