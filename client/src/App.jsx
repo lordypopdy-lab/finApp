@@ -21,7 +21,7 @@ const App = () => {
         <Route path="/settings" element={<Settings />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
-      <Toaster position="top-right" toastOptions={{ duration: 4000 }} />
+      <Toaster position="top-right" toastOptions={{ duration: 5000 }} />
     </BrowserRouter>
   );
 };
