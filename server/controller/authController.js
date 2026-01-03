@@ -7,23 +7,22 @@ const getUser = async (req, res) => {
       const { email } = req.body;
   
       if (!email) {
-        return res.status(400).json({ error: "Email is required" });
+        return res.json({ error: "Email is required" });
       }
   
-      const user = await UserModel.findOne({ email }).select("-password"); // exclude password
+      const user = await UserModel.findOne({ email }).select("-password"); 
   
       if (!user) {
-        return res.status(404).json({ error: "User not found" });
+        return res.json({ error: "User not found" });
       }
   
       return res.json({ user });
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ error: "Server error" });
+      return res.json({ error: "Server error" });
     }
   };
 
-// REGISTER
 const createUser = async (req, res) => {
   try {
     const { email, password, fullname } = req.body;
@@ -54,18 +53,15 @@ const createUser = async (req, res) => {
   }
 };
 
-// LOGIN
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Check if user exists
     const user = await UserModel.findOne({ email });
     if (!user) {
       return res.status(400).json({ error: "User not found!" });
     }
 
-    // Compare password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ error: "Invalid credentials!" });
@@ -85,7 +81,6 @@ const loginUser = async (req, res) => {
   }
 };
 
-// TEST
 const test = async (req, res) => {
   return res.json({
     message: "Server Folders Connected Successfully!",
@@ -96,5 +91,5 @@ module.exports = {
   test,
   getUser,
   createUser,
-  loginUser, // added here
+  loginUser, 
 };
