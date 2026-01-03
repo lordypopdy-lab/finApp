@@ -45,7 +45,7 @@ const Dashboard = () => {
   };
 
   const withdrawalAlert = async () => {
-    toast.error("Next free withdrawal will be on . 2025.", {
+    toast.error("Withdrawals are currently restricted. This feature is only available to users located in the United States.", {
       icon: "🔒",
     });
   };
